@@ -72,7 +72,7 @@ export default {
       const pages = []
       this.imgList.forEach((item, index) => {
         const page = Math.floor(index / 8) // 通过下标获取页数
-        if (!pages[page]) { // 如果数组pages的不是空，创建一个二维数组
+        if (!pages[page]) { // 先判断当前地某项是否为空，如果数组pages的不是空，创建一个二维数组，就是创建第几页
           pages[page] = []
         }
         pages[page].push(item) // 将数据添加到二位数组中
@@ -88,29 +88,31 @@ export default {
 @import '~styles/mixins.styl';  // 样式方法封装
 
 .icons >>> .swiper-container //组件穿透，给子组件进行样式设置
-    overflow: hidden
-    width: 100%
-    height: 0
-    padding-bottom: 50%
-.icon
+  overflow: hidden
+  width: 100%
+  height: 0
+  padding-bottom: 50%
+.icons
+  margin-top: .1rem
+  .icon
     position: relative
     overflow: hidden
     float: left
     width: 25%
     padding-bottom: 25%
     .icon-img
-        position: absolute
-        top: 0
-        left: 0
-        right: 0
-        bottom: .44rem
-        padding: .1rem
-        box-size: border-box
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: .44rem
+      padding: .1rem
+      box-size: border-box
     .icon-img-content
-        display: block
-        height: 100%
-        margin 0 auto
-.icon-img-desc
+      display: block
+      height: 100%
+      margin 0 auto
+  .icon-img-desc
     right: 0
     left: 0
     bottom: 0.10rem
