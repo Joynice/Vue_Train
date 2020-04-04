@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="area" v-for="(item, key) of cities" :key="key">
+    <div class="area" v-for="(item, key) of cities" :key="key" :ref="key">
       <div class="title border-topbottom">
         {{key}}
       </div>
@@ -39,10 +39,20 @@ export default {
   name: 'CityList',
   props: {
     hotCities: Array,
-    cities: Object
+    cities: Object,
+    letter: String
   },
   mounted () {
+    // console.log(this.$refs.wrapper)  通过this.$refs.(绑定的元素:ref)获得元素
     this.scroll = new Bscroll(this.$refs.wrapper)
+  },
+  watch: {
+    letter () {
+      // console.log(this.$refs[this.letter]) 改变的元素,这里是个数组，取出第0项即可
+      // console.log(this.letter) 监听letter的改变
+      const element = this.$refs[this.letter][0]
+      this.scroll.scrollToElement(element)
+    }
   }
 }
 </script>
