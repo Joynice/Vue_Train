@@ -17,30 +17,8 @@
 <script>
 export default {
   name: 'HomeRecommend',
-  data () {
-    return {
-      RecommendList: [{
-        id: '0001',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/1507/cc/19733fc0135062788140cbb48ae606a7.water.jpg_200x200_d9ebe2fd.jpg',
-        title: '北京野生动物园',
-        desc: '北京野生动物园集动物保护、野生动物驯养繁殖及科普教育为一体，汇集了世界各地珍稀野生动物200多种10000余头。'
-      }, {
-        id: '0002',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/201308/08/41150dacc0e3a0c8c8d65eac.jpg_200x200_c62292e9.jpg',
-        title: '北京动物园',
-        desc: '北北京动物园始建于清光绪三十二年（1906年），是中国开放最早、饲养展出动物种类最多的动物园。。'
-      }, {
-        id: '0003',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/1507/cc/19733fc0135062788140cbb48ae606a7.water.jpg_200x200_d9ebe2fd.jpg',
-        title: '北京野生动物园',
-        desc: '北京野生动物园集动物保护、野生动物驯养繁殖及科普教育为一体，汇集了世界各地珍稀野生动物200多种10000余头。'
-      }, {
-        id: '0004',
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/201308/08/41150dacc0e3a0c8c8d65eac.jpg_200x200_c62292e9.jpg',
-        title: '北京动物园',
-        desc: '北北京动物园始建于清光绪三十二年（1906年），是中国开放最早、饲养展出动物种类最多的动物园。。'
-      }]
-    }
+  props: {
+    RecommendList: Array
   }
 }
 </script>

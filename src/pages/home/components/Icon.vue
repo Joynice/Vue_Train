@@ -1,6 +1,6 @@
 <template>
   <div class="icons">
-      <swiper>
+      <swiper v-if="pages" :options="swiperOption">
           <!--循环二组数组，看看里面有几个数组，以就有几页-->
           <swiper-slide v-for="(page, index) of pages" :key="index">
             <!--循环子数组，获得子数组中的数据-->
@@ -18,66 +18,32 @@
 <script>
 export default {
   name: 'HomeIcon',
+  props: {
+    imgList: Array
+  },
   data () {
     return {
-      imgList: [{
-        id: '0001',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-        desc: '景点门票'
-      }, {
-        id: '0002',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/c1/6f15f887179fa002.png',
-        desc: '颐和园'
-      }, {
-        id: '0003',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/4c/eac47dd8def8de02.png',
-        desc: '北京园博园'
-      }, {
-        id: '0004',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png',
-        desc: '玉渊潭公园'
-      }, {
-        id: '0005',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png',
-        desc: '一日游'
-      }, {
-        id: '0006',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/67/9a1678221b8e0e02.png',
-        desc: '古北水镇'
-      }, {
-        id: '0007',
-        imgUrl: 'http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20193/a40ee278d67000f2a29d2e20f6a029b3.png',
-        desc: '香山公园'
-      }, {
-        id: '0008',
-        imgUrl: 'http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20193/a40ee278d67000f2a29d2e20f6a029b3.png',
-        desc: '凤凰岭'
-      }, {
-        id: '0008',
-        imgUrl: 'http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20193/a40ee278d67000f2a29d2e20f6a029b3.png',
-        desc: '踏青赏花'
-      }, {
-        id: '0009',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/bd/9f7b9b2b60c1502.png',
-        desc: '中国马镇'
-      }, {
-        id: '0010',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/47/c2b659e048b11602.png',
-        desc: '圆明园'
-      }]
+      swiperOption: {
+        autoplay: false
+      }
     }
   },
   computed: { // 计算属性， 计算每个页面显示8个小图标，多出的下页显示
     pages () {
-      const pages = []
-      this.imgList.forEach((item, index) => {
-        const page = Math.floor(index / 8) // 通过下标获取页数
-        if (!pages[page]) { // 先判断当前地某项是否为空，如果数组pages的不是空，创建一个二维数组，就是创建第几页
-          pages[page] = []
-        }
-        pages[page].push(item) // 将数据添加到二位数组中
-      })
-      return pages // 最后返回的格式[[item0, item1...],[item8...],...]
+      if (this.imgList) {
+        const pages = []
+        this.imgList.forEach((item, index) => {
+          const page = Math.floor(index / 8) // 通过下标获取页数
+          if (!pages[page]) { // 先判断当前地某项是否为空，如果数组pages的不是空，创建一个二维数组，就是创建第几页
+            pages[page] = []
+          }
+          pages[page].push(item) // 将数据添加到二位数组中
+        })
+        return pages // 最后返回的格式[[item0, item1...],[item8...],...]
+      } else {
+        const pages = false
+        return pages
+      }
     }
   }
 }
