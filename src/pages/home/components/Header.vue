@@ -10,7 +10,7 @@
             </div>
             <router-link to="/city">
                 <div class="header-right">
-                    {{this.city}}
+                        {{this.city}}
                     <span class="iconfont arrow-icon">&#xe6aa;</span>
                 </div>
             </router-link>
@@ -19,16 +19,21 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'HomeHeader',
-  props: {
-    city: String
+  computed: { // 此方法可以去城市的前三个字母
+    // city () {
+    //   return this.$store.state.city.slice(0, 6)
+    // }
+    ...mapState(['city'])
   }
 }
 </script>
 
 <style lang="stylus" scoped>
 @import '~styles/varibles.styl';
+@import '~styles/mixins.styl'
 .header
     display flex
     line-height $Headerheight
@@ -51,7 +56,8 @@ export default {
         color #ccc
         padding-left .2rem
     .header-right
-        width 1.24rem
+        min-width 1.04rem
+        padding 0 .1rem
         float right
         text-align center
         color: #fff
