@@ -10,7 +10,7 @@
           </div>
       </div>
     </div>
-    <common-gallary :imgs="imgs" v-show="showGallary" @close="handleCloseGallary"></common-gallary>
+    <common-gallary :imgs="imgs" v-if="showGallary" @close="handleCloseGallary"></common-gallary>
   </div>
 </template>
 
