@@ -38,6 +38,9 @@ export default {
   },
   activated () {
     window.addEventListener('scroll', this.handleScroll)
+  },
+  deactivated () { // 使用keep-alive时，在页面即将被销毁或者页面关闭的时候触发，进行全局事件的解绑
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
