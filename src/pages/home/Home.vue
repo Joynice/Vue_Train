@@ -57,7 +57,7 @@ export default {
     this.lastCity = this.city
     this.getHomeInfo()
   },
-  activated () {
+  activated () { // keep-alive 新增的生命周期函数，可以在页面不发生变化的时候就行就行页面缓存
     if (this.lastCity !== this.city) {
       this.lastCity = this.city
       this.getHomeInfo()
