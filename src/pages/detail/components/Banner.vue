@@ -1,16 +1,16 @@
 <template>
   <div>
     <div class="banner" @click="handleBannerClick" @close="handleCloseGallary">
-      <img src="http://img1.qunarzz.com/sight/p0/1507/cc/19733fc0135062788140cbb48ae606a7.water.jpg_600x330_1abc2773.jpg" alt="" class="banner-img">
+      <img :src="bannerImg" alt="" class="banner-img">
       <div class="banner-info">
-        <div class="banner-title">北京野生动物园(AAAA景区)</div>
+        <div class="banner-title">{{sightName}}</div>
         <div class="banner-number">
           <span class="iconfont banner-icon">&#xe606;</span>
-          39
+          {{gallaryImgs.length}}
           </div>
       </div>
     </div>
-    <common-gallary :imgs="imgs" v-if="showGallary" @close="handleCloseGallary"></common-gallary>
+    <common-gallary :imgs="gallaryImgs" v-if="showGallary && gallaryImgs.length" @close="handleCloseGallary"></common-gallary>
   </div>
 </template>
 
@@ -23,10 +23,13 @@ export default {
   },
   data () {
     return {
-      showGallary: false,
-      imgs: ['http://img1.qunarzz.com/sight/p0/2002/f6/f60df9dd1ce24076a3.img.jpg_r_800x800_00a5e516.jpg',
-        'http://img1.qunarzz.com/sight/p0/2002/7b/7ba06b9a849d4e3da3.img.jpg_r_800x800_c73bcab7.jpg']
+      showGallary: false
     }
+  },
+  props: {
+    sightName: String,
+    bannerImg: String,
+    gallaryImgs: Array
   },
   methods: {
     handleBannerClick () { // 点击展示图片列表
