@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     hasNoDate () {
-      return !this.list
+      return !this.list.length
     }
   },
   watch: {

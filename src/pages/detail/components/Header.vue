@@ -1,9 +1,17 @@
 <template>
   <div>
-    <router-link tag="div" to="/" class="header-abs" v-show="showAbs">
+    <router-link
+      tag="div"
+      to="/"
+      class="header-abs"
+      v-show="showAbs">
       <div class="iconfont header-abs-back">&#xe624;</div>
     </router-link>
-    <div class="header-fixed" v-show="!showAbs" :style="opacityStyle">
+    <div
+      class="header-fixed"
+      v-show="!showAbs"
+      :style="opacityStyle"
+    >
       <router-link to="/">
         <div class="iconfont header-fixed-back">&#xe624;</div>
       </router-link>
@@ -24,51 +32,50 @@ export default {
     }
   },
   methods: {
-    handleScroll () { // 实现头部渐隐渐现效果
-      const top = document.documentElement.scrollTop
+    handleScroll () {
+      const top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
       if (top > 60) {
         let opacity = top / 140
         opacity = opacity > 1 ? 1 : opacity
-        this.opacityStyle.opacity = opacity
+        this.opacityStyle = { opacity }
         this.showAbs = false
       } else {
         this.showAbs = true
       }
     }
   },
-  activated () {
+  mounted () {
     window.addEventListener('scroll', this.handleScroll)
   },
-  deactivated () { // 使用keep-alive时，在页面即将被销毁或者页面关闭的时候触发，进行全局事件的解绑
+  destroyed () {
     window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-@import '~styles/varibles.styl'
+  @import '~styles/varibles.styl'
   .header-abs
-    position absolute
-    left .2rem
-    top .2rem
-    width .8rem
-    height .8rem
-    line-height .8rem
-    border-radius .4rem
-    background rgba(0, 0, 0, .8)
-    text-align center
+    position: absolute
+    left: .2rem
+    top: .2rem
+    width: .8rem
+    height: .8rem
+    line-height: .8rem
+    border-radius: .4rem
+    text-align: center
+    background: rgba(0, 0, 0, .8)
     .header-abs-back
-      color #fff
-      font-size .4rem
+      color: #fff
+      font-size: .4rem
   .header-fixed
-    position fixed
-    z-index 2
-    top 0
-    right 0
-    left 0
-    height: $Headerheight
-    line-height: $Headerheight
-    overflow: hidden
+    z-index: 2
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    height: .86rem
+    line-height: .86rem
     text-align: center
     color: #fff
     background: $bgColor
@@ -76,7 +83,9 @@ export default {
     .header-fixed-back
       position: absolute
       top: 0
-      left: 0.1rem
+      left: 0
+      width: .64rem
+      text-align: center
       font-size: .4rem
       color: #fff
 </style>
